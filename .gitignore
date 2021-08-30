@@ -2,3 +2,4 @@
 /**/*.tif
 /**/*.icc
 /node_modules
+/data/layers/temp

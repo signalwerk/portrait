@@ -5,12 +5,15 @@ This illustration is made by [Benjamin Güdel](http://www.guedel.biz/) in June 2
 
 ## Generate
 
-To generate all versions of the portraits
+To generate all versions of the portraits go to `src` folder (`cd ./src`) and run the generator:
 
-- Go to `src` folder → `cd ./src`
-- Optional: generate `exec.sh` with `node process.js`
-- Run the generator files `sh exec.sh`
+```sh
+rm -rf ../data/layers/temp   # clean up old data
+mkdir ../data/layers/temp
 
+node run.js layers           # generate colored layers
+node run.js compose          # compose layers
+```
 ### Preparations in Photoshop
 
 Based on the original Photoshop-File from the [artist](http://www.guedel.biz/) the following steps were executed:
