@@ -132,6 +132,7 @@ async function generateComposition() {
 
       const img = {
         input: input,
+        premultiplied: layer.blendMode === "multiply",
         blend: layer.blendMode === "multiply" ? "multiply" : "over",
         raw: { width: outputSize, height: outputSize, channels: 4 },
       };
