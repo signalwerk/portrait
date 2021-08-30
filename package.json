@@ -1,0 +1,15 @@
+{
+  "name": "portrait",
+  "version": "1.0.0",
+  "description": "This repository contains a portrait of Stefan Huber. For details see [my Avatar-Page](https://avatar.signalwerk.ch).   This illustration is made by [Benjamin Güdel](http://www.guedel.biz/) in June 2020.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stefan Huber",
+  "license": "MIT",
+  "dependencies": {
+    "sharp": "^0.28.3"
+  }
+}
