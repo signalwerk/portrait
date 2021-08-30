@@ -89,13 +89,11 @@ async function generateColors() {
 }
 
 async function generateComposition() {
-  // transcode all the layers to the right size
-
   outputSizes.forEach(async (outputSize) => {
     const outputPath = `${finalPath}/rgb/w${outputSize}/`;
     fs.mkdirSync(outputPath, { recursive: true });
 
-    const output = `${outputPath}/stefan-huber.png`;
+    const output = `${outputPath}/stefan-huber`;
 
     const base = await sharp({
       create: {
@@ -147,7 +145,17 @@ async function generateComposition() {
 
     base.composite(results);
 
-    await base.toColourspace("srgb").toFile(output, function (err) {});
+    await base
+      .toColourspace("srgb")
+      .png()
+      .toFile(`${output}.png`, function (err) {});
+    await base
+      .toColourspace("srgb")
+      .jpeg({
+        quality: 75,
+        mozjpeg: true,
+      })
+      .toFile(`${output}.jpg`, function (err) {});
 
     console.log("finish", output);
   });
