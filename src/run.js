@@ -91,7 +91,10 @@ async function generateComposition() {
   // transcode all the layers to the right size
 
   outputSizes.forEach(async (outputSize) => {
-    const output = `${finalPath}/stefan-huber-${outputSize}px.png`;
+    const outputPath = `${finalPath}/rgb/w${outputSize}/`;
+    fs.mkdirSync(outputPath, { recursive: true });
+
+    const output = `${outputPath}/stefan-huber.png`;
 
     const base = await sharp({
       create: {
