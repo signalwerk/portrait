@@ -49,6 +49,7 @@ async function generateColors() {
           fit: "cover",
           position: "left top",
         })
+        .sharpen(1, 0, 1)
         .negate()
         .toBuffer();
 
