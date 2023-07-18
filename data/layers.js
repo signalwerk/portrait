@@ -109,6 +109,7 @@ const data = [
   {
     id: 11,
     name: "hg-yellow-gradient-2",
+    type: "gradient",
     blendMode: "normal",
     opacity: 65,
     gs: false,
@@ -145,6 +146,7 @@ const data = [
   {
     id: 15,
     name: "hg-yellow-gradient-1",
+    type: "gradient",
     blendMode: "normal",
     opacity: 100,
     gs: false,

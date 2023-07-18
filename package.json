@@ -5,11 +5,17 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "gradients": "node ./src/run.js gradients",
+    "layers": "node ./src/run.js layers",
+    "compose": "node ./src/run.js compose",
+    "gradient-extract": "node ./src/preparation/gradient-find.js",
+    "gradient-generate": "node ./src/gradient-generate.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Stefan Huber",
   "license": "MIT",
   "dependencies": {
+    "pngjs": "^7.0.0",
     "sharp": "^0.28.3"
   }
 }

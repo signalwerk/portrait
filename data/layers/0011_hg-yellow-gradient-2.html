@@ -1,0 +1,54 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <style>
+                .container {
+                    width: 1200px;
+                    height: 1200px;
+                    position: relative;
+                }
+
+                .container div {
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+
+                #gradientDiv {
+                    background: linear-gradient(to bottom, rgb(100%,100%,100%) 0%, rgb(100%,100%,100%) 45.25601480567551%, rgb(93%,93%,93%) 49.500308451573105%, rgb(84%,84%,84%) 53.09068476249229%, rgb(72%,72%,72%) 57.199259716224546%, rgb(50%,50%,50%) 64.02220851326341%, rgb(25%,25%,25%) 71.86921653300432%, rgb(14%,14%,14%) 76.00246761258482%, rgb(6%,6%,6%) 79.48180135718692%, rgb(0%,0%,0%) 82.72671190623072%, rgb(0%,0%,0%) 82.80074028377544%, rgb(0%,0%,0%) 100%);
+                    z-index: 2;
+                }
+
+                #imageDiv {
+                    background: url('./0011_hg-yellow-gradient-2-orig.png') no-repeat center center;
+                    background-size: cover;
+                    z-index: 1;
+                }
+            </style>
+            <script>
+                function toggleVisibility() {
+                    const gradientDiv = document.getElementById('gradientDiv');
+                    const imageDiv = document.getElementById('imageDiv');
+
+                    if (gradientDiv.style.display === 'none') {
+                        gradientDiv.style.display = 'block';
+                        imageDiv.style.display = 'none';
+                    } else {
+                        gradientDiv.style.display = 'none';
+                        imageDiv.style.display = 'block';
+                    }
+                }
+            </script>
+        </head>
+        <body>
+            <div class="container">
+                <div id="gradientDiv"></div>
+                <div id="imageDiv"></div>
+            </div>
+            <button onclick="toggleVisibility()">Toggle Visibility</button>
+        </body>
+        </html>
+    

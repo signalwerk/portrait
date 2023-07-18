@@ -2,14 +2,14 @@ import fs from "fs";
 import { join } from "path";
 import sharp from "sharp";
 import layers from "../data/layers.js";
+import { generateGradient } from "./gradient-generate.js";
 
-const dataPath = "../data";
+const dataPath = "./data";
 const layerPath = `${dataPath}/layers`;
-const finalPath = `../docs/illustration/2020`;
+const finalPath = `./docs/illustration/2020`;
 const tempPath = `${layerPath}/temp`;
 
 const outputSizes = [8000, 6000, 4000, 3000, 2000, 1500, 1000, 500];
-// const outputSizes = [8000];
 
 const filename = (name, index, extension = "psd") =>
   `${`${index}`.padStart(4, "0")}_${name}.${extension}`;
@@ -32,16 +32,46 @@ const getGS = ({ width, height, colors }) => {
   return channels;
 };
 
+async function generateGradients() {
+  layers.forEach(async (layer) => {
+    outputSizes.forEach(async (outputSize) => {
+      if (layer.type === "gradient") {
+        const input = `${layerPath}/${filename(layer.name, layer.id, "json")}`;
+        const output = `${tempPath}/${outputSize}_gradient_${filename(
+          layer.name,
+          layer.id,
+          "png"
+        )}`;
+        generateGradient(
+          input,
+          output,
+          outputSize,
+          outputSize,
+          (1 / 8000) * 8105
+        );
+      }
+    });
+  });
+}
+
 async function generateColors() {
   // transcode all the layers to the right size
   layers.forEach(async (layer) => {
     outputSizes.forEach(async (outputSize) => {
-      const input = `${layerPath}/${filename(layer.name, layer.id, "png")}`;
+      let input = `${layerPath}/${filename(layer.name, layer.id, "png")}`;
       const output = `${tempPath}/${outputSize}_${filename(
         layer.name,
         layer.id,
         "png"
       )}`;
+
+      if (layer.type === "gradient") {
+        input = `${tempPath}/${outputSize}_gradient_${filename(
+          layer.name,
+          layer.id,
+          "png"
+        )}`;
+      }
 
       const alpha = await sharp(input)
         .resize(outputSize, outputSize, {
@@ -164,6 +194,10 @@ async function generateComposition() {
 var runArgs = process.argv.slice(2);
 
 switch (runArgs[0]) {
+  case "gradients":
+    console.log("---- start generate gradients");
+    await generateGradients();
+    break;
   case "layers":
     console.log("---- start generate colored layers");
     await generateColors();
